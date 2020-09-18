@@ -1,0 +1,69 @@
+{
+
+   "properties":{
+
+      "displayName":"rule resource group name",
+
+      "description":"This policy enables you to restrict name of an resource group when it is created.",
+
+      "mode":"All",
+
+      "metadata":{
+
+         "version":"1.0.1",
+
+         "category":"Locations"
+
+      },
+
+      "parameters":{
+
+         "NameRule":{
+
+            "type":"array",
+
+            "metadata":{
+
+               "description":"The rule to write our resource group name",
+
+               "displayName":"resource name Rule"
+
+            },
+
+            "defaultValue":[
+
+               "dev-myproject"
+
+            ],
+
+            "contains":"dev"
+
+         }
+
+      },
+
+      "policyRule":{
+
+         "if":{
+
+            "not":{
+
+               "field":"name",
+
+               "in":"[parameters('NameRule')]"
+
+            }
+
+         },
+
+         "then":{
+
+            "effect":"deny"
+
+         }
+
+      }
+
+   }
+
+}
